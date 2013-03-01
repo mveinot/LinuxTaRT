@@ -1,0 +1,34 @@
+.TH "tartdates" "5" "1.0.0" "Mark Veinot" "LinuxTaRT Special Dates"
+.SH "NAME"
+.LP 
+\fBtartdates\fR \- Special date configuration for LinuxTaRT
+.SH "DESCRIPTION"
+.LP 
+LinuxTaRT uses a configuration file called
+\fBspecialdates\fR to enable the user to display a specific tagline on certain special dates. The name and location of this file is specified in the LinuxTaRT configuration file ~/.tartrc, but is usually:
+.LP 
+~/.tartdates
+.SH "PARAMETERS"
+.LP 
+Each line of the special date file consists of a day of the year expressed as a two digit month, a forward\-slash (/), a two digit date, a colon (:) and a line of text.
+.TP 
+\fBmm/dd\fR:\fItagline text\fR
+.LP 
+Any line that does not conform to this specification will be treated as a comment.
+Comments may also be specified by prefixing text with a # symbol. Using this method, you can place a comment behind a date line.
+.SH "EXAMPLES"
+.LP 
+01/01:Happy New Year!!
+.LP 
+Will use "Happy New Year!!" as the tagline when the date is January 1st.
+.LP 
+12/25:Merry Christmas to all!
+.LP 
+Displays "Merry Christmas to all!" as your tagline on Christmas day.
+.SH "FILES"
+.LP 
+~/.tartdates
+
+.SH "SEE ALSO"
+.LP 
+tart(1) tartrc(5) tart-custom(5)

@@ -1,0 +1,185 @@
+LinuxTaRT - the definitive e-mail signature program for Linux
+-------------------------------------------------------------
+            TaRT - The Automatic Random Tagline
+-------------------------------------------------------------
+
+Introduction:
+
+As some of you may know, I first wrote TaRT in Borland Turbo Pascal for
+MS-DOS. That version eventually became the TaRT II that many use in MS Windows
+95/NT/98.
+
+The 97-98 school year was my first year as a Comp. Sci. student at Acadia
+University here in Nova Scotia. At the time I was already quite familiar
+with the Linux OS, and I was pleased to see it being used as the platform in
+which our course in C programming was taught.
+
+As I got more and more into C programming, I began to use Linux much more than
+I had before (mostly due to that fact that I finally had a PC with the space
+and speed to run it in a comfortable way). Since I began to use Linux almost
+exclusively, it seemed necessary that my e-mail here would also have my
+standard TaRT signature appended. So I delved into my limited C vocabulary and
+made much use of the Linux man pages for C functions. Finally I arraived at a
+nicely working, fairly robust, version of TaRT for Linux (aka LinuxTaRT).
+
+-----
+
+Notes:
+
+LinuxTaRT has undergone many significant changes since v1.00 - it now no
+longer assumes that the file .tartrc is located in the same directory as TaRT
+itself. It now looks for .tartrc in the directory pointed to by the $HOME
+environment variable (i.e. the current user's home directory).
+LinuxTaRT 2.00 also provides the ability to use completely customizable
+signature layout via a definition file (explained below...)
+LinuxTaRT 2.20 provides special date functionality (explained below...)
+
+Another note for users of 1.05 or earlier, is that your current .tartrc file
+will no longer work as it is, To fix this, simply add the text CustomText1=
+CustomText2=, SignatureFile=, and TagLineDatabase= to the beginning of the
+respective lines in the file (alternatively, you can run the new interactive
+setup util, TaRT -s).
+
+I changed the .tartrc file to this structure because I wanted to implement a
+more reliable way of dealing with the settings. These modifications also allow
+the entries to occur in any order, and make it easier to implement a built-in
+setup util (again, see below).
+
+The .tartrc file allows the use of comments by inserting a pound or
+"hash" sign # in front of any text that you want to be a comment.
+
+LinuxTaRT has fairly self-explanitory help accessable by using the --help or -h
+command-line arguments.
+
+Since TaRT checks for .tartrc in the users home directory, TaRT can be
+placed in a user accessible folder like /usr/bin or /usr/local/bin.       
+Then an entry can be added to your .login file or crontab to frequently create
+a new signature.
+
+-----
+
+Explaination of custom file:
+
+By running TaRT with  +cust  it will create your signature based on the layout
+in the file specified as your Custom Layout File in the setup. LinuxTaRT can
+use custom files directly from TaRT II for MS Windows provided the DOS linefeeds
+and CRs are converted to UNIX newlines.
+
+As of 2.51, LinuxTaRT defaults to custom layout signature.
+
+The following format strings are allowed:
+
+	%c1	all occurances will be replaced by text in Custom Text 1
+	%c2	same as above but Custom Text 2
+	%dt	replaced with todays date
+	%ib	the current time in Internet TimeBeats
+	%12	the current hour in 12-hour time (1 <= n <= 12)
+	%24	the current hour in 24-hour time (0 <= n <= 23)
+	%mn	the current minute
+	%ap	"AM" or "PM"
+	%hr	horizontal line (64 chars in length)
+	%tg	a randomly selected tagline from the database
+		If more than one occurance each will be randomly
+		chosen
+	%ut	for systems that support has been written for, this
+		will be the uptime in hours for the system
+	%vi	LinuxTaRT version info
+
+Any plain text is directly copied to the signature file. Note that
+using custom definitions voids the 64 char line limit; Plain text longer
+than 64 chars is still copied to the signature file. Custom layouts
+also do not support centering.
+
+-----
+
+Explaination of special dates:
+
+New to version 2.20, LinuxTaRT provides the use of special dates which have
+been in the MS-DOS/Windows versions for some time now. Basically, special
+dates are used to cause the tagline to be a string of your text when ever the
+current date matches a specified date. This can be used to have a special
+message displayed on significant dates such as your birthday or holidays.
+
+To setup special dates, create a new file and add entries like the following:
+
+
+01/01:Happy New Year!!
+04/12:This text will appear on April 12th
+
+
+Note:	Any text not of the above format will be treated as a comment.
+	Comments can be placed after entries by placing a # directly after
+	the entry text.
+
+Run the setup utility and tell TaRT that this file exists.
+
+If you want special dates turned off temporarily, running TaRT with -sd  will
+make TaRT ignore special dates.
+
+If your custom signature contains two taglines, and a special date is
+encountered, the first occurance of the %tg tag will be replaced with the
+special date text, any subsequent ones will be a random tagline as always.
+
+-----
+
+Daemon mode:
+
+New to version 3.00 is the ability to run TaRT as a full fledged signature
+daemon. That is, it runs in the background and will update your signature at
+regular user specified intervals.
+
+To start TaRT in daemon mode, simply execute TaRT like so:
+
+TaRT --daemon s
+
+where 's' is the desired number of seconds between signature updates.
+
+TaRT also can manage it's own process, and provides a mechanism to prevent
+more than one copy from running for a particular user at the same time.
+
+To check if TaRT is running, use the -p or --proc switch.
+
+To terminate your running TaRT process, simply use -k or --kill.
+
+TaRT also understands several signals.
+
+If SIGALRM is received, TaRT will update your signature immediately.
+If SIGHUP is received, TaRT will re-read your .tartrc file.
+If SIGTERM or SIGQUIT are received, TaRT will exit normally (this is what -k
+and --kill do)
+
+Also, simply re-running TaRT without any switches will generate a new signature
+immediately.
+
+From version 3.00 onward, preferences such as centering, and special dates can
+be saved in your .tartrc file.
+
+Run TaRT -s, selecting the defaults for all options, then examine your .tartrc
+file to see the new settings. All of them are boolean values (0 or 1) except
+for "RunAsDaemon" and "Running".
+
+RunAsDaemon specifies the number of seconds between updates (0 to disable
+daemon mode)
+
+Running is equal to the current TaRT process's PID, or 0 if TaRT is not
+running.
+
+If TaRT is abnormally terminated, "Running" will not get set to 0, thereby
+preventing TaRT from running. Use the -k or --kill switch to reset it.
+
+-----
+
+And of course, please report any bugs you found, what you were doing when they
+occurred, and if you can reproduce them.
+Send bug reports, questions, comments, etc, to mveinot@gmail.com
+
+I respond to all e-mails personally, and I try to reply within 2 days.
+
+-----
+
+TaRT is distributed under the GNU Public License and as such carries the
+warranty specifed within, which is to say - no warranty what so ever.
+Please read the file COPYING file for more information.
+
+Thank-you for trying TaRT. I hope you find it to be of use.
+MV GrafX Productions copyright (c) Mark Veinot 2005

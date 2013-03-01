@@ -1,0 +1,25 @@
+INCLUDES = -I. -I../
+CFLAGS = @CFLAGS@ $(INCLUDES)
+CC = @CC@
+OBJS = main.o stringutil.o tartutil.o riscos.o IniFile.o ibeat.o
+prefix = @prefix@
+exec_prefix = @exec_prefix@
+bindir = @bindir@
+INSTALL = @INSTALL@
+
+all:	tart-target
+
+tart-target:	$(OBJS)
+		$(CC) $(CFLAGS) -o tart $(OBJS)
+
+install:
+		install -s -D tart $(bindir)/tart
+
+uninstall:
+		rm -f $(bindir)/tart
+
+clean:
+		rm -f *.o tart
+
+distclean: clean
+		rm -f Makefile

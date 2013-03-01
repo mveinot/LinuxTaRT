@@ -1,0 +1,59 @@
+/* config.h.in.  Generated automatically from configure.in by autoheader.  */
+#ifndef _CONFIG_H
+#define _CONFIG_H
+
+/* LinuxTaRT version */
+#define VER 3.09
+
+/* Tagline Max length */
+#define TAGLEN 64
+
+/* Define this if we don't want color TTY ouput */
+#undef NO_COLOR
+
+/* Define this if we want iBeat support */
+#undef IBEATS
+
+#endif  /* _CONFIG_H */
+
+/* Define if you have the `alarm' function. */
+#undef HAVE_ALARM
+
+/* Define if you have the <fcntl.h> header file. */
+#undef HAVE_FCNTL_H
+
+/* Define if your system has a working `malloc' function. */
+#undef HAVE_MALLOC
+
+/* Define if you have the <stdlib.h> header file. */
+#undef HAVE_STDLIB_H
+
+/* Define if you have the `strftime' function. */
+#undef HAVE_STRFTIME
+
+/* Define if you have the <string.h> header file. */
+#undef HAVE_STRING_H
+
+/* Define if you have the `sysinfo' function. */
+#undef HAVE_SYSINFO
+
+/* Define if you have the <sys/param.h> header file. */
+#undef HAVE_SYS_PARAM_H
+
+/* Define if you have the <sys/wait.h> header file. */
+#undef HAVE_SYS_WAIT_H
+
+/* Define if you have the <unistd.h> header file. */
+#undef HAVE_UNISTD_H
+
+/* Define as the return type of signal handlers (`int' or `void'). */
+#undef RETSIGTYPE
+
+/* Define if you have the ANSI C header files. */
+#undef STDC_HEADERS
+
+/* Define if your <sys/time.h> declares `struct tm'. */
+#undef TM_IN_SYS_TIME
+
+/* Define to empty if `const' does not conform to ANSI C. */
+#undef const

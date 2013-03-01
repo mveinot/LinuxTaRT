@@ -1,0 +1,22 @@
+SUBDIRS = src doc misc
+
+all:
+	for subdir in $(SUBDIRS); do\
+		(cd $$subdir && $(MAKE) $@) || exit 1;\
+	done
+
+install:
+	for subdir in $(SUBDIRS); do\
+		(cd $$subdir && $(MAKE) install) || exit 1;\
+	done
+
+clean:
+	for subdir in $(SUBDIRS); do\
+		(cd $$subdir && $(MAKE) clean) || exit 1;\
+	done
+
+distclean:
+	for subdir in $(SUBDIRS); do\
+		(cd $$subdir && $(MAKE) distclean) || exit 1;\
+	done
+	rm -f Makefile config.h config.log config.status

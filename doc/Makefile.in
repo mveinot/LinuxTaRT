@@ -1,0 +1,42 @@
+prefix = @prefix@
+MANDIR = @mandir@
+MAN1DIR = $(MANDIR)/man1
+MAN5DIR = $(MANDIR)/man5
+INSTALL = @INSTALL@
+man1 = 1
+man5 = 5
+
+man1files = tart
+man5files = tartrc tartdates tart-custom
+
+all:
+	for manfile in $(man1files); do\
+		(gzip -9c $$manfile.$(man1) > $$manfile.$(man1).gz) || exit 1;\
+	done
+	for manfile in $(man5files); do\
+		(gzip -9c $$manfile.$(man5) > $$manfile.$(man5).gz) || exit 1;\
+	done
+
+install: all
+	for manfile in $(man1files); do\
+		($(INSTALL) -m 0755 -d $(MAN1DIR)) || exit 1;\
+		($(INSTALL) -m 0744 $$manfile.$(man1).gz $(MAN1DIR)) || exit 1;\
+	done
+	for manfile in $(man5files); do\
+		($(INSTALL) -m 0755 -d $(MAN5DIR)) || exit 1;\
+		($(INSTALL) -m 0744 $$manfile.$(man5).gz $(MAN5DIR)) || exit 1;\
+	done
+
+uninstall:
+	for manfile in $(man1files); do\
+		(rm -f $(MAN1DIR)/$$manfile.*) || exit 1;\
+	done
+	for manfile in $(man5files); do\
+		(rm -f $(MAN5DIR)/$$manfile.*) || exit 1;\
+	done
+
+clean:
+	rm -f *.gz
+
+distclean: clean
+	rm -f Makefile

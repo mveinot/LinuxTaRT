@@ -1,0 +1,16 @@
+prefix = @prefix@
+datadir = @datadir@
+INSTALL = @INSTALL@
+
+all:
+
+install:
+	$(INSTALL) -m 0644 -D tart.tags $(datadir)/tart.tags
+
+uninstall:
+	rm -f $(datadir)/tart.tags
+
+clean:
+
+distclean:
+	rm -f Makefile

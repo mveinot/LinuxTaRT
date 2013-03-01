@@ -1,0 +1,134 @@
+Version History for LinuxTaRT
+
+The names in the curly braces following an entry denote the individual(s)
+responsible for a feature or bringing a problem to my attention and/or
+providing hints/patches for solving it. Entries without one were
+added or corrected by myself.
+
+3.09
+-Change naming convention of several files to me more in-line with UNIX standards.
+
+3.08
+-Fix a buffer overrun when parsing signature tags (this fixes execution under Ubuntu 10.04)
+-Fix several improper calls to prinf and family.
+-Check results from all fgets type calls for a clean compile and to Do The Right Thing.
+
+3.07
+-REALLY fix the man page install problem (my bad) (Colin Tuckley <colin()tuckley!org>)
+-Finally switch from tmpnam() to mkstemp() (Colin Tuckley <colin()tuckley!org>)
+-Allow setting the max tagline length with ./configure
+-Some potential buffer overflows headed off at the pass (Colin Tuckley <colin()tuckley!org>)
+-Corrected a problem with the input buffer not getting flushed if input was longer
+ than the maximum tagline length (Colin Tuckley <colin()tuckley!org>)
+
+3.06b
+-Minor correction to Makefile.in fixing a man page install problem (Colin Tuckley <colin()tuckley!org>)
+
+3.06
+-Allow user to specify a config file at run time.
+-Update documentation
+
+3.05
+-Added ability to specify a custom file at run time. (David Merriman <dkmerriman()gmail!com>)
+-Added code to display the GPL notice.
+-Added an item to the --help listing to show the GPL notice
+-Removed "legal mumbo jumbo" notice from README, added GPL note.
+
+3.04 (May 17, 2002):
+-Switched to autoconf to manage the build process.
+
+3.04:
+-Remove newlines from displayed output. (Jörg Lippmann <joerg!lippmann()o3-software!de>)
+
+3.03:
+-Fix to allow 8-bit ASCII from custom file. (Jörg Lippmann <joerg!lippmann()o3-software!de>)
+
+3.02:
+-Really fixed bug where .TaRTrc was not created by --setup if it didn't exist
+-Fixed bug that might cause daemon mode to segfault in some cases.
+
+3.01:
+-Fixed bug where signature was not displayed on update using CustomSignature
+-Fixed bug where .TaRTrc was not created by --setup if it didn't exist
+
+3.00:
+-Added daemon functionality to LinuxTaRT (see README)
+-Along with daemon functionality comes process management (see README)
+-Command line preferences such as quiet, custom, center, etc... can be stored
+in your .TaRTrc file now.
+-Changed the %vi (version info) tag to return ONLY the version number, and not
+the LinuxTaRT version x.xx that it used to. Update your .custom files.
+
+2.52:
+-Cleaned up some compile-time warnings on SunOS
+-Don't rely on /proc/uptime to determine uptime - uptime available only on Linux
+and RiscOS - if you know how to obtain it using system calls on other OSes,
+send me a patch! :)
+-Re-attempt iBeat support (uncomment -DIBEATS line in Makefile)
+-Removed some "riscos" defined lines... this program is called LinuxTaRT
+regardless of what OS it's running on... if you want it to say otherwise, use a
+custom layout, or modify your copy.
+-Removed patch for KMail, added documentation about an easier method to achieve
+the same results (provided by Brian Hall <brianw!hall()compaq.com>)
+-Fixed horribly incorrect header files (I'm amazed they compiled!)
+
+2.51:
+Had to unfortunately remove iBeat support because people seem to want time in their local
+timezone more than they want iBeats.
+Incorporated long awaited multiline tagline support contributed by Brian Hall <brihall()bigfoot!com>
+who also fixed some small bugs. TaRT defaults to custom signatures now, as well.
+
+2.50:
+Incorporated new Internet TimeBeat code contributed by Iain Truskett as well as
+RiscOS specific code for some file handling as well as uptime calculation and some
+code clean-up. Many thanks to Iain! <koschei()eh!org>
+
+2.28:
+TaRT falls back on standard signature if the custom layout file is not
+available.
+Added 4 new tags for use in custom signatures. Allows having a time stamp
+as well as a date stamp.
+Improved INI/rc file interface.
+Removed TaRTrcConvert utility.
+
+2.27:
+"TaRT --help" now works when you don't have a .TaRTrc file {Andreas}
+When TaRT is run without a .TaRTrc file present, it now informs the user of
+"TaRT --setup".
+Additions to INSTALL file regarding "TaRT --setup"
+Patch included to make KDE's KMail run TaRT for each new mail message.
+
+2.26:
+ChangeLog distributed with package.
+Added ability to undefine the use of "uptime" for systems without /proc
+Yet more corrections to the Makefiles regarding the "install" program. {Steve}
+Significantly more efficient reading/writing of .TaRTrc
+.TaRTrc now uses more descriptive names for the stored items, however the old
+item names are still recognized for backward compatibility.
+(see misc/TaRTrc-distrib)
+END-INI is no longer required at the end of .TaRTrc
+Free-form comments are allowed in .TaRTrc using the # symbol to denote them.
+Utility included to convert your old .TaRTrc file to a new one
+(see src/TaRTrcConvert/)
+
+2.25:
+Foolish oversight on my part left version 2.24 only able to parse the tilde
+homedir convention ( ~/filename ) for the signature file. 2.25 fixed this
+so that ~ is allowed for any of the specified files in .TaRTrc
+ 
+2.24:
+Added ability to use the tilde character in .TaRTrc to specify that a file
+is in a users home directory. {Bruno}
+Minor correction to the src/Makefile.
+
+2.23:
+Fixed a bug in the centering code that occurred when custom text 1 or 2 were
+the maximum length allowed (caused segfault) {John S}
+
+Some systems default to compiling char variables as unsigned. On these systems,
+specifying +cust to use the custom layout produced a signature file full of
+garbage. The variable that was causing this has been defined as signed in the
+code so that it is compiled properly on all systems. {John S}
+
+2.20:
+First public release of LinuxTaRT.

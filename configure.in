@@ -1,0 +1,58 @@
+# Process this file with autoconf to produce a configure script.
+AC_INIT
+AC_CONFIG_SRCDIR([src/opt.h])
+AC_CONFIG_HEADER([config.h])
+
+# Checks for programs.
+AC_PROG_CC
+AC_PROG_INSTALL
+
+# Checks for libraries.
+
+# Checks for header files.
+AC_CHECK_HEADERS([fcntl.h stdlib.h string.h sys/param.h sys/wait.h unistd.h])
+
+# Checks for typedefs, structures, and compiler characteristics.
+AC_C_CONST
+AC_STRUCT_TM
+
+# Checks for library functions.
+AC_FUNC_MALLOC
+AC_TYPE_SIGNAL
+AC_CHECK_FUNCS([alarm strftime sysinfo])
+
+AC_ARG_ENABLE(color,
+	AC_HELP_STRING([--enable-color],[Enable color TTY output (default is YES)]),
+	[enable_color="$enableval"],[enable_color=yes])
+if test "$enable_color" = yes; then
+	true
+elif test "$enable_color" = no; then
+	AC_DEFINE(NO_COLOR)
+else
+	echo "error: must be yes or no: --enable-color=$enable_color"
+	exit 1
+fi
+
+AC_ARG_ENABLE(ibeats,
+	AC_HELP_STRING([--enable-ibeats],[Enable iBeat time support (default is NO)]),
+	[enable_ibeats="$enableval"],[enable_ibeats=no])
+if test "$enable_ibeats" = yes; then
+	AC_DEFINE(IBEATS)
+elif test "$enable_ibeats" = no; then
+	true
+else
+	echo "error: must be yes or no: --enable-ibeats=$enable_ibeats"
+	exit 1
+fi
+
+AC_ARG_WITH(length,
+	AC_HELP_STRING([--with-length=LENGTH],[Set maximum tagline length (default is 64)]),
+	taglen="$withval", taglen=64)
+AC_DEFINE_UNQUOTED(TAGLEN, ${taglen})
+	
+
+AC_CONFIG_FILES([doc/Makefile
+                 Makefile
+                 misc/Makefile
+                 src/Makefile])
+AC_OUTPUT

@@ -1,0 +1,80 @@
+.TH "tart-custom" "5" "1.0.0" "Mark Veinot" "LinuxTaRT template format"
+.SH "NAME"
+.LP 
+\fBtart-custom\fR \- Template format for LinuxTaRT
+.SH "DESCRIPTION"
+.LP 
+LinuxTaRT can use a user defined template file to generate the signature.
+The name and location of this file can be specified in ~/.tartrc, but defaults to the following location:
+.LP 
+~/.tart-custom
+.SH "PARAMETERS"
+.LP 
+LinuxTaRT recognizes the following directives in the template and replaces them with the corresponding values:
+.TP 
+\fB%c1\fR \- \fICustomText1 from .tartrc\fR
+.TP 
+\fB%c2\fR \- \fICustomText2 from .tartrc\fR
+.TP 
+\fB%tg\fR \- \fItagline\fR
+Randomly selected from the tagline database.
+.TP 
+\fB%hr\fR \- \fIhorizontal line\fR
+.TP 
+\fB%dt\fR \- \fItodays date\fR
+In the format: Monday, February 25, 2002
+.TP 
+\fB%12\fR \- \fIcurrent hour\fR
+12\-hour format
+.TP 
+\fB%24\fR \- \fIcurrent hour\fR
+24\-hour format
+.TP 
+\fB%mn\fR \- \fIcurrent minutes\fR
+.TP 
+\fB%ap\fR \- \fIAM / PM\fR
+.TP 
+\fB%ut\fR \- \fIsystem uptime\fR
+For RiscOS or systems with the sysinfo function.
+.TP 
+\fB%ib\fR \- \fItime in ibeats\fR
+.TP 
+\fB%vi\fR \- \fILinuxTaRT version string\fR
+.TP 
+\fB%%\fR \- \fIthe percent symbol (%)\fR
+.LP 
+Any other characters in the template are copied to the signature as is.
+.SH "EXAMPLES"
+The following template:
+.LP 
+LinuxTaRT \- The Automatic Random Tagline
+.br 
+%hr
+.br 
+/dev/random says:
+.br 
+%tg
+.LP 
+http://mycompany.com
+.br 
+%hr
+.LP 
+Generates the following signature:
+.LP 
+LinuxTaRT \- The Automatic Random Tagline
+.br 
+\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-
+.br 
+/dev/random says:
+.br 
+Best way to dispose of the Borg: Give them Windows 3.1.
+.LP 
+http://mycompany.com
+.br 
+\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-
+.SH "FILES"
+.LP 
+~/.custom
+.SH "SEE ALSO"
+.LP 
+tart(1) tartrc(5) tartdates(5)

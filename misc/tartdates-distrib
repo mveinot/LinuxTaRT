@@ -1,0 +1,6 @@
+Date portion of each entry must have leading zeros where applicatable
+Text portion of each entry should not exceed 64 characters
+Comments are any line that does not conform to the date entry convention 
+
+01/01:Happy New Year!! # comments can be placed here using a pound sign too!
+12/25:Merry Christmas to all!

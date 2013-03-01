@@ -1,0 +1,26 @@
+See INSTALL file for build and installation instructions
+
+After initial installation, TaRT users should run
+
+> tart -s
+
+to create their config files.
+
+By default, the tart executable is installed in /usr/local/bin
+and the tagline database (tag.trt) is installed in /etc
+Although, if you plan on adding a lot of custom taglines to the
+database (tart -a) and are not root, you might want to copy tag.trt to
+your home directory and use it from there.
+
+TaRT has been shown to run on i386 LinuxELF, RiscOS and SunOS 5.6
+
+An example .tartrc file is provided as misc/tartrc-distrib
+An axample custom layout file is included as misc/customlayout-distrib
+An example special dates file is included as misc/specialdates-distrib
+
+HINT: 	you may want to add a line to your start-up script or crontab to
+	update your tart signature on a regular basis.
+
+UPDATE:	as of version 3.00 LinuxTaRT has it's own daemon mode! See the
+	README for details.
+

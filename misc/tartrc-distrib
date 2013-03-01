@@ -1,0 +1,13 @@
+CustomText1=This is custom text 1
+CustomText2=This is custom text 2 (good place for a URL :)
+SignatureFile=~/.signature
+CustomFile=~/.custom
+SpecialDates=~/.customdate
+TagLineDatabase=/etc/tag.trt
+ShowDate=1
+RunQuiet=0
+ShowVersion=1
+CenterText=0
+UseCustomText=1
+UseSPecialDates=1
+RunAsDaemon=0

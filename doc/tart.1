@@ -1,0 +1,108 @@
+.\" LinuxTaRT is a fast, efficient and highly customizeable email signature generator.
+.TH "LinuxTaRT" "1" "1.0.2" "Mark Veinot" "Signature Generator"
+.SH "NAME"
+.LP 
+LinuxTaRT \- generates email signatures
+.SH "SYNTAX"
+.LP 
+tart [\fIoptions\fP]
+
+.SH "DESCRIPTION"
+.LP 
+TaRT generates email signatures based on a variety of rules and settings. It can make use of a template to allow the user to produce 100% customized signatures.
+.SH "OPTIONS"
+.LP 
+.TP 
+\fB\-a, \-\-add\fR
+Prompt for a new tagline and enter it into the tagline database. (requires write permission on database file).
+.TP 
+\fB\-d, \-\-display\fR
+Display current signature and exit.
+.TP 
+\fB\-h, \-\-help\fR
+Display a help message and exit.
+.TP 
+\fB\-k, \-\-kill\fR
+Terminate TaRT in daemon mode.
+.TP 
+\fB\-p, \-\-proc\fR
+Display current status and PID (if applicable).
+.TP 
+\fB\-l, \-\-license\fR
+Display software license.
+.TP 
+\fB\-s, \-\-setup\fR
+Run built\-in configuration tool.
+.TP 
+\fB\-\-daemon <seconds>\fR
+Start in daemon momde and wait <seconds> seconds between updates.
+.TP 
+\fB\-\-template <filename>\fR
+Run TaRT with the custom file specified here.
+.TP 
+\fB\-\-config <filename>\fR
+Run TaRT with the config file specified here.
+.LP 
+The following options may be set in the configuration file. The command line parameters will override other settings.
+.TP 
+\fB+/\-c\fR
+Enable/disable signature centering. (disabled)
+.TP 
+\fB+/\-cust\fR
+Build signature based on template. (enabled)
+.TP 
+\fB+/\-n\fR
+Enable/disable date in signature. (enabled)
+.TP 
+\fB+/\-q\fR
+Enable/disable quiet mode. (disabled)
+.TP 
+\fB+/\-sd\fR
+Enable/disable special dates. (enabled)
+.TP 
+\fB+/\-v\fR
+Enable/disable TaRT version information in signature. (enabled)
+.SH "FILES"
+.LP 
+.TP 
+\fB~/.tartrc\fR
+Configuration file, the location and name of the following files can be set here.
+.TP 
+\fB/etc/tart.tags\fR
+Tagline database. Contains taglines, one per line.
+.TP 
+\fB~/.signature\fR
+File where signature is written.
+.TP 
+\fB~/.tart-tustom\fR
+Signature template.
+.TP 
+\fB~/.tartdates\fR
+List of special dates.
+.SH "ENVIRONMENT VARIABLES"
+.LP 
+.TP 
+\fBHOME\fP
+Specifies the users home directory
+.SH "EXAMPLES"
+.LP 
+To run TaRT using default or stored settings:
+.LP 
+tart
+.LP 
+To run TaRT quietly:
+.LP 
+tart +q
+.LP 
+To run TaRT as a daemon and generate a new signature every 5 minutes:
+.LP 
+tart \-\-daemon 300
+.SH "VERSION"
+.LP 
+This man page was written for LinuxTaRT version 3.08
+.SH "AUTHORS"
+.LP 
+Mark Veinot <mveinot@gmail.com>
+.SH "SEE ALSO"
+.LP 
+tartrc(5) tartdates(5) tart-custom(5)

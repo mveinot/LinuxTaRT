@@ -1,0 +1,60 @@
+.TH "tartrc" "5" "1.0.0" "Mark Veinot" "LinuxTaRT configuration file format"
+.SH "NAME"
+.LP 
+\fB.tartrc\fR \- Configuration file for LinuxTaRT
+.SH "DESCRIPTION"
+.LP 
+LinuxTaRT uses a configuration file called
+\fBtartrc\fR. This configuration file is searched for
+in the following location:
+.LP 
+~/.tartrc
+.SH "PARAMETERS"
+.LP 
+.TP 
+\fBCustomText1\fR = \fIstring\fR
+Signature header or text to replace %c1 in template.
+.TP 
+\fBCustomText2\fR = \fIstring\fR
+Signature footer or text to replace %c2 in template.
+.TP 
+\fBSignatureFile\fR = \fI/path/to/signature_file\fR
+Location and name file to write the sigature to.
+.TP 
+\fBTagLineDatabase\fR = \fI/path/to/tagline_database\fR
+Location and name of tagline database. (defaults to /etc/tart.tags)
+.TP 
+\fBSpecialDates\fR = \fI/path/to/special_dates\fR
+Location and name of special date file.
+.TP 
+\fBCustomFile\fR = \fI/path/to/template\fR
+Location and name of layout template.
+.LP 
+The following settings may be overridden from the command line.
+.TP 
+\fBRunQuiet\fR = \fI0|1\fR
+Display information during executution.
+.TP 
+\fBShowDate\fR = \fI0|1\fR
+Display the date in the default signature.
+.TP 
+\fBShowVersion\fR = \fI0|1\fR
+Display the LinuxTaRT version in the default signature.
+.TP 
+\fBCenterText\fR = \fI0|1\fR
+Center the text in the default signature.
+.TP 
+\fBUseCustomText\fR = \fI0|1\fR
+Generate signature from template or use default layout.
+.TP 
+\fBUseSpecialDates\fR = \fI0|1\fR
+Check special date file for special dates.
+.TP 
+\fBRunAsDaemon\fR = \fIseconds\fR
+Run as a daemon and wait this many seconds between updates.
+.SH "FILES"
+.LP 
+~/.tartrc
+.SH "SEE ALSO"
+.LP 
+tart(1) tartdates(5) tart-custom(5)
