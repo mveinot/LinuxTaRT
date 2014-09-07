@@ -10,7 +10,7 @@ INSTALL = @INSTALL@
 all:	tart-target
 
 tart-target:	$(OBJS)
-		$(CC) $(CFLAGS) -o tart $(OBJS)
+		$(CC) $(CFLAGS) $(LDFLAGS) -o tart $(OBJS)
 
 install:
 		install -s -D tart $(bindir)/tart
