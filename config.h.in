@@ -3,7 +3,7 @@
 #define _CONFIG_H
 
 /* LinuxTaRT version */
-#define VER 3.09
+#define VER 3.10
 
 /* Tagline Max length */
 #define TAGLEN 64

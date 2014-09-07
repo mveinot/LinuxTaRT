@@ -5,6 +5,10 @@ responsible for a feature or bringing a problem to my attention and/or
 providing hints/patches for solving it. Entries without one were
 added or corrected by myself.
 
+3.10
+-A number of small corrections and bugfixes
+ -Fix --config option so that it actually works
+
 3.09
 -Change naming convention of several files to me more in-line with UNIX standards.
 
