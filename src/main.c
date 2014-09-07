@@ -71,8 +71,8 @@
 
 char custom1[256], custom2[256], tagfile[256], sigfile[256], customfile[256], datefile[256];
 int optarray[10];
-char *custparam = NULL;
-char *custconfig = NULL;
+char custparam[4096];
+char custconfig[4096];
 
 /* function declarations */
 
@@ -99,13 +99,9 @@ int main (int argc, char *argv[])
 		license ();
 	if (IsSwitch (argv, argc, "--setup") != -1 || IsSwitch (argv, argc, "-s") != -1)
 		TaRTSetup (custom1, custom2, customfile, sigfile, tagfile, datefile);
-	if (ReadINIFile (custom1, custom2, customfile, sigfile, tagfile, datefile, optarray, NULL) == 1) {
-		fprintf (stderr, "error reading .tartrc (First time running TaRT? Try `tart --setup')\n");
-		exit (1);
-	}
 	if ((i = IsSwitch (argv, argc, "--config")) != -1)
 	{
-		if (argc < (i+2) || sscanf(argv[i+1], "%as", &custconfig) == 0)
+		if (argc < (i+2) || sscanf(argv[i+1], "%s", custconfig) == 0)
 		{
 			fprintf(stderr, "invalid filename passed to --config\nexecuting with default config file\n");
 		}
@@ -113,7 +109,10 @@ int main (int argc, char *argv[])
 			fprintf (stderr, "error reading .tartrc (First time running TaRT? Try `tart --setup')\n");
 			exit (1);
 		}
-	}	
+	} else if (ReadINIFile (custom1, custom2, customfile, sigfile, tagfile, datefile, optarray, NULL) == 1) {
+		fprintf (stderr, "error reading .tartrc (First time running TaRT? Try `tart --setup')\n");
+		exit (1);
+	}
 
 	if (IsSwitch (argv, argc, "--add") != -1 || IsSwitch (argv, argc, "-a") != -1)
 		AddLine (tagfile);
@@ -181,7 +180,7 @@ int main (int argc, char *argv[])
 	}
 	if ((i = IsSwitch (argv, argc, "--template")) != -1)
 	{
-		if (argc < (i+2) || sscanf(argv[i+1], "%as", &custparam) == 0)
+		if (argc < (i+2) || sscanf(argv[i+1], "%s", custparam) == 0)
 		{
 			fprintf(stderr, "invalid filename passed to --template\nexecuting with regular settings\n");
 		}
