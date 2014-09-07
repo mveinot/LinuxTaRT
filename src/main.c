@@ -299,7 +299,7 @@ void Help (void)
 	printf (" -k, --kill\tterminate your currently running TaRT process\n");
 	printf (" -p, --proc\tdisplay current status and PID if applicable\n");
 	printf (" -s, --setup\trun the internal setup program\n");
-	printf (" -l, --license\tdisplay the GNU Public License notice\n");
+	printf (" -l, --license\tdisplay the GNU  General Public License notice\n");
 	printf (" --daemon [s]\trun in daemon mode, wait [s] seconds between updates\n");
 	printf (" --config [filename]\tuse the config file specified in [filename]\n");
 	printf (" --template [filename]\tuse the custom file specified in [filename]\n");
